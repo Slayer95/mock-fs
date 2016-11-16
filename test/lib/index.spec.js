@@ -3,6 +3,7 @@
 var Writable = require('stream').Writable;
 var assert = require('../helper').assert;
 var fs = require('fs');
+var fork = require('child_process').fork;
 var mock = require('../../lib/index');
 var os = require('os');
 var path = require('path');
@@ -71,6 +72,25 @@ describe('The API', function() {
       assert.equal(pkg.name, 'mock-fs');
 
       mock.restore();
+    });
+
+    it('uses the mocked fs module after recent require() calls', function(done) {
+      const child = fork('../fixtures/mock-fs.js', {
+        cwd: __dirname,
+        silent: true
+      });
+
+      let called = false;
+      child.on('exit', function() {
+        if (called) return;
+        called = true;
+        done(new Error('Sandbox was ignored'));
+      });
+      child.stderr.on('data', function() {
+        if (called) return;
+        called = true;
+        done(null);
+      });
     });
 
   });
