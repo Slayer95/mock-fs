@@ -74,13 +74,32 @@ describe('The API', function() {
       mock.restore();
     });
 
-    it('uses the mocked fs module after recent require() calls', function(done) {
-      const child = fork('../fixtures/mock-fs.js', {
+    it('uses the mocked fs module after recent core require() calls', function(done) {
+      var child = fork('../../fixtures/mock-fs-parent.js', {
         cwd: __dirname,
         silent: true
       });
 
-      let called = false;
+      var called = false;
+      child.on('exit', function() {
+        if (called) return;
+        called = true;
+        done(new Error('Sandbox was ignored'));
+      });
+      child.stderr.on('data', function() {
+        if (called) return;
+        called = true;
+        done(null);
+      });
+    });
+
+    it('uses the mocked fs module after recent fs require() calls', function(done) {
+      var child = fork('../../fixtures/mock-fs-parent-nested.js', {
+        cwd: __dirname,
+        silent: true
+      });
+
+      var called = false;
       child.on('exit', function() {
         if (called) return;
         called = true;
