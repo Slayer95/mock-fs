@@ -69,7 +69,7 @@ describe('The API', function() {
       mock({foo: 'bar'});
 
       var pkg = require('../../package.json');
-      assert.equal(pkg.name, 'mock-fs');
+      assert.equal(pkg.name, 'mock-fs-require-fix');
 
       mock.restore();
     });
