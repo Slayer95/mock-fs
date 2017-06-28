@@ -1,12 +1,13 @@
 {
-  "name": "mock-fs-require-fix",
-  "description": "Fork of the tschaub/mock-fs project.",
+  "name": "mock-fs-require-fix-node-8",
+  "description": "Forked and merged Slayer95/mock-fs and tschaub/mock-fs projects",
   "version": "1.0.1",
   "main": "lib/index.js",
-  "homepage": "https://github.com/Slayer95/mock-fs",
+  "homepage": "https://github.com/webextensions/mock-fs",
   "contributors": [
     "Tim Schaub (http://tschaub.net/)",
-    "Leonardo Julca (https://github.com/Slayer95/)"
+    "Leonardo Julca (https://github.com/Slayer95/)",
+    "Priyank Parashar (https://github.com/webextensions/)"
   ],
   "keywords": [
     "mock",
@@ -18,10 +19,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/Slayer95/mock-fs.git"
+    "url": "git://github.com/webextensions/mock-fs.git"
   },
   "bugs": {
-    "url": "https://github.com/Slayer95/mock-fs/issues"
+    "url": "https://github.com/webextensions/mock-fs/issues"
   },
   "license": "MIT",
   "scripts": {
